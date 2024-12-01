@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SpamLify - Login untuk mengelola otomatisasi pesan WhatsApp.">
+    <meta name="keywords" content="SpamLify, WhatsApp API, Login">
+    <meta name="theme-color" content="#00254d">
+    <meta name="author" content="CryptzX-Dev">
+    <title>Login - SpamLify</title>
+
+    <!-- TailwindCSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #001226;
+            color: #e0e6ed;
+        }
+
+        .form-card {
+            background-color: #0d2f4b;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .input {
+            background-color: #001833;
+            border: 1px solid #00254d;
+            color: #e0e6ed;
+            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input:focus {
+            border-color: #00bcd4;
+            box-shadow: 0 0 8px rgba(0, 188, 212, 0.6);
+        }
+
+        .btn-login {
+            background: linear-gradient(to right, #1e88e5, #00bcd4);
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(to right, #00bcd4, #1e88e5);
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="form-card max-w-sm w-full">
+            <h2 class="text-2xl font-bold text-center gradient-text mb-6">Login ke SpamLify</h2>
+            <form action="/auth/login" method="POST" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="email" name="email" class="input" placeholder="Masukkan email Anda" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="password" name="password" class="input" placeholder="Masukkan password Anda" required>
+                </div>
+                <button type="submit" class="btn-login w-full">Login</button>
+            </form>
+            <p class="text-center mt-6 text-sm text-gray-400">
+                Belum punya akun? <a href="/register" class="text-[#1e88e5] hover:text-[#00bcd4]">Daftar di sini</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

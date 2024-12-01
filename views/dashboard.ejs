@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00254d">
+  <title>SpamLify</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #001226;
+      color: #e0e6ed;
+    }
+    .bg-card {
+      background: #0d2f4b;
+    }
+    .bg-button {
+      background: linear-gradient(to right, #1e88e5, #00bcd4);
+    }
+    .bg-button:hover {
+      background: linear-gradient(to right, #00bcd4, #1e88e5);
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, #00bcd4, #1e88e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+  <header class="bg-[#00254d] shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-bold gradient-text">SpamLify</h1>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <div class="max-w-4xl mx-auto mt-10 p-4 space-y-6">
+      <!-- Tambah Nomor -->
+      <div class="bg-card rounded-lg p-6 shadow-md">
+        <h2 class="text-lg font-semibold mb-4 gradient-text">Tambahkan Nomor Target</h2>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Username</label>
+          <input 
+            type="text" 
+            id="usernameAdd" 
+            class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-4 py-2" 
+            placeholder="Username Anda"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Masukkan Nomor</label>
+          <input 
+            type="text" 
+            id="addPhoneNumber"
+            class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-4 py-2" 
+            placeholder="Contoh +6288xxx"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Masukkan Delay</label>
+          <input 
+            type="number" 
+            id="delayInSeconds"
+            class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-4 py-2" 
+            placeholder="1 detik"
+          />
+        </div>
+        <button id="addNumberBtn" type="button" class="bg-button text-white font-semibold py-2 px-4 rounded-md transition transform hover:scale-105">
+          Tambahkan
+        </button>
+      </div>
+
+      <!-- Hapus Nomor -->
+      <div class="bg-card rounded-lg p-6 shadow-md">
+        <h2 class="text-lg font-semibold mb-4 gradient-text">Hapus Nomor Target</h2>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Username</label>
+          <input 
+            type="text" 
+            id="usernameDelete" 
+            class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-4 py-2" 
+            placeholder="Username Anda"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Masukkan Nomor</label>
+          <input 
+            type="text" 
+            id="deletePhoneNumber"
+            class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-4 py-2" 
+            placeholder="Contoh +6288xxx"
+          />
+        </div>
+        <button id="deleteNumberBtn" type="button" class="bg-button text-white font-semibold py-2 px-4 rounded-md transition transform hover:scale-105">
+          Hapus
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-[#001833] text-gray-400 py-6">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p>© 2024 SpamLify | CryptzX-Dev. All Rights Reserved.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Tambah Nomor
+    document.getElementById('addNumberBtn').addEventListener('click', function() {
+      const username = document.getElementById('usernameAdd').value;
+      const phoneNumber = document.getElementById('addPhoneNumber').value;
+      const delayInSeconds = document.getElementById('delayInSeconds').value;
+
+      if (!username || !phoneNumber || !delayInSeconds) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Input Kosong',
+          text: 'Harap masukkan username, nomor, dan delay terlebih dahulu.',
+        });
+        return;
+      }
+
+      fetch('/api/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, number: phoneNumber, delay: delayInSeconds }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        Swal.fire({ icon: 'success', title: 'Nomor Ditambahkan!', text: data.message });
+        document.getElementById('usernameAdd').value = '';
+        document.getElementById('addPhoneNumber').value = '';
+        document.getElementById('delayInSeconds').value = '';
+      })
+      .catch(error => Swal.fire({ icon: 'error', title: 'Terjadi Kesalahan!', text: 'Tidak dapat menambahkan nomor.' }));
+    });
+
+    // Hapus Nomor
+    document.getElementById('deleteNumberBtn').addEventListener('click', function() {
+      const username = document.getElementById('usernameDelete').value;
+      const phoneNumber = document.getElementById('deletePhoneNumber').value;
+
+      if (!username || !phoneNumber) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Input Kosong',
+          text: 'Harap masukkan username dan nomor terlebih dahulu.',
+        });
+        return;
+      }
+
+      fetch('/api/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, number: phoneNumber }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        Swal.fire({ icon: 'success', title: 'Nomor Dihapus!', text: data.message });
+        document.getElementById('usernameDelete').value = '';
+        document.getElementById('deletePhoneNumber').value = '';
+      })
+      .catch(error => Swal.fire({ icon: 'error', title: 'Terjadi Kesalahan!', text: 'Tidak dapat menghapus nomor.' }));
+    });
+  </script>
+</body>
+</html>

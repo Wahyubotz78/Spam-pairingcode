@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00254d">
+  <title>SpamLify - Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #001226; /* Latar belakang utama */
+      color: #e0e6ed; /* Warna teks */
+    }
+
+    .bg-card {
+      background: #0d2f4b; /* Warna kartu */
+    }
+
+    .bg-button {
+      background: linear-gradient(to right, #1e88e5, #00bcd4); /* Gradasi tombol */
+    }
+
+    .bg-button:hover {
+      background: linear-gradient(to right, #00bcd4, #1e88e5); /* Gradasi tombol hover */
+    }
+
+    .gradient-text {
+      background: linear-gradient(45deg, #00bcd4, #1e88e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <header class="bg-[#00254d] shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-[#003166] to-[#00254d] rounded-full flex items-center justify-center"></div>
+        <h1 class="text-2xl font-bold gradient-text">SpamLify</h1>
+      </div>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="/login" class="text-white hover:text-gray-400">login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gray-800 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold gradient-text">Simplify WhatsApp Spaming tos</h1>
+      <p class="text-lg md:text-xl mt-4 text-gray-300">SpamLify adalah tools spam whatsapp menggunakan <p class="text-bold"> @whiskeysockets/baileys </p>untuk berintegrasi dengan API whatsapp langsung.</p>
+      <div class="mt-8 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+        <a href="/register">
+          <button class="bg-button text-white font-semibold py-3 px-6 rounded-md transition transform hover:scale-105">
+          Coba Sekarang
+          </button>
+        </a>
+        <a href="/register">
+          <button class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-md transition transform hover:scale-105">
+          Sign-Up
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="bg-gray-900 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 gradient-text">Fitur Unggulan</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-card rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-semibold mb-4">Otomatis</h3>
+          <p class="text-gray-300">spam terkirim otomatis, dengan jeda yang bisa ditentukan.</p>
+        </div>
+        <div class="bg-card rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-semibold mb-4">Real-Time Analytics</h3>
+          <p class="text-gray-300">Analisa Spam yang terkirim secara langsung.</p>
+        </div>
+        <div class="bg-card rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-semibold mb-4">Mudah Digunakan</h3>
+          <p class="text-gray-300">Tampilan yang simpel dan modern, mudah Digunakan dan responsif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="bg-gray-800 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 gradient-text">Pricing Plans</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-card rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-semibold mb-4">Free</h3>
+          <p class="text-2xl font-bold mb-4 gradient-text">Rp 0</p>
+          <ul class="text-gray-300 mb-6 space-y-2">
+            <li>5 Nomor</li>
+          </ul>
+          <button class="bg-button text-white font-semibold py-2 px-4 rounded-md transition transform hover:scale-105">
+            Sign-Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-gray-900 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 gradient-text">Hubungi Kami</h2>
+      <p class="text-gray-300 mb-6">Pertanyaan Lebih lanjut Hubungi whatsapp saya.</p>
+      <a href="https://wa.me/62882005514880" class="bg-button text-white font-semibold py-3 px-6 rounded-md transition transform hover:scale-105">
+        WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#001833] text-gray-400 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <p>© 2024 SpamLify | CryptzX-Dev. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
